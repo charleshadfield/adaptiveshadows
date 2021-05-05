@@ -1,0 +1,12 @@
+Hartree-Fock bitstrings
+
+===
+jw
+11100001110000
+===
+parity
+
+===
+bk
+
+===

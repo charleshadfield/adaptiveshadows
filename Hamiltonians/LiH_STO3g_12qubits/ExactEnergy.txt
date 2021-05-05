@@ -1,0 +1,8 @@
+The exact ground state electronic energy is: -8.908299431473518
+
+
+The static Coulomb repulsion: 1.0255372304651165
+The exact ground state energy (electronic): -8.908299431473438
+The Hartree Fock energy (electronic): -8.888642400844514
+The total ground state energy (including Coulomb repulsion): -7.882762201008322
+The total Hartree Fock energy (including Coulomb repulsion): -7.863105170379398
