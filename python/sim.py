@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import sys
+import time
 import multiprocessing
 import numpy as np
 
@@ -51,25 +52,33 @@ def main():
     assert name in hamiltonians, "Molecule not recognized."
     ham = hamiltonians[name]
     print("Molecule is {} in {} encoding.".format(name.split('_')[0],name.split('_')[1]))
-    n_shots = 1005
+    n_shots = 1000
     print("Number of shots is set to {}.".format(n_shots))
 
     ### Ground information
     print("Calculating ground energy and ground state...")
+    t0 = time.time()
     ground_energy, ground_state = ham.ground(sparse=True)
-    print("Ground information calculated.")
+    t1 = time.time()
+    diff = int(t1-t0)
+    print("Done\nGround information calculated in {}min{}sec.".format(diff // 60, diff % 60))
 
     ### Simulation
     n_workers = 15
-    n_shots_per_worker = 67
-    assert n_workers * n_shots_per_worker == n_shots, "Your math doesn't check out!"
+    n_shots_per_worker = int(np.ceil(n_shots / n_workers))
+    #assert n_workers * n_shots_per_worker == n_shots, "Your math doesn't check out!"
 
-    print("Pooling {} workers to simulate {} shots each...".format(n_workers, n_shots_per_worker))
+    print("Pooling {} workers to simulate roughly {} shots each...".format(n_workers, n_shots_per_worker))
+    t0 = time.time()
     p = multiprocessing.Pool(n_workers)
     x = (name, ground_state, n_shots_per_worker)
-    inputs = [x for _ in range(n_workers)]
+    y = (name, ground_state, n_shots - (n_workers-1)*n_shots_per_worker)
+    inputs = [x for _ in range(n_workers-1)]
+    inputs.append(y)
     outputs = p.map(simulation, inputs)
-    print("Pooling has finished.")
+    t1 = time.time()
+    diff = int(t1-t0)
+    print("Done\nPooling took {}min{}sec.".format(diff // 60, diff % 60))
 
     ### Return energy estimate
     H = ham.SummedOp()

@@ -33,8 +33,12 @@ def _generateBeta(j, qubits_shift, bases_shift, H):
             p = pauli[qubits_shift[j]]
             index = p2index[p]
             constants[index] += coeff**2
-    beta_unnormalized = np.sqrt(constants)
-    beta = beta_unnormalized / np.sum(beta_unnormalized)
+    if np.sum(constants) == 0.0:
+        # generate uniform distribution
+        beta = [1/3, 1/3, 1/3]
+    else:
+        beta_unnormalized = np.sqrt(constants)
+        beta = beta_unnormalized / np.sum(beta_unnormalized)
     return beta
 
 def _isCompatible(pauli, j, qubits_shift, bases_shift):
