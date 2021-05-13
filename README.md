@@ -9,24 +9,23 @@ Install requirements, and navigate to folder `adaptiveshadows/python`. Then call
 
 Take a Hamiltonian, and allow access to the ground state 1000 times. Record the energy difference between the estimated energy and the true ground energy.
 
-| Molecule | Encoding | Derand | Adaptive                                         | Diagonalize | Simulation |
-|----------|----------|--------|--------------------------------------------------|-------------|------------|
-| H2       | JW       | 0.06   | 0.003, 0.04, 0.08, 0.09, 0.12, 0.15, 0.09, 0.004 | 1sec        | 10sec      |
-|          | Parity   | 0.03   | 0.02                                             |             |            |
-|          | BK       | 0.06   | 0.12, 0.03                                       |             |            |
-| LiH      | JW       | 0.03   | 0.07                                             | 1sec        | 1min50sec  |
-|          | Parity   | 0.03   | 0.01                                             |             | 1min30sec  |
-|          | BK       | 0.04   | 0.15                                             |             |            |
-| BeH2     | JW       | 0.06   | 0.02                                             | 7sec        | 6min20sec  |
-|          | Parity   | 0.09   | 0.09                                             |             | 5min40sec  |
-|          | BK       | 0.06   | 0.12                                             |             | 6min04sec  |
-| H2O      | JW       | 0.12   |                                                  | 15sec       |            |
-|          | Parity   | 0.22   |                                                  |             |            |
-|          | BK       | 0.20   |                                                  |             |            |
-| NH3      | JW       | 0.018  |                                                  | 5min30      |            |
-|          | Parity   | 0.21   |                                                  |             |            |
-|          | BK       | 0.12   |                                                  |             |            |
-
+| Molecule | Encoding | Derand | Adaptive                                                           | Adaptive RSME | Diagonalize | Simulation |
+|----------|----------|--------|--------------------------------------------------------------------|---------------|-------------|------------|
+| H2       | JW       | 0.06   | 0.003, 0.04, 0.08, 0.09, 0.12, 0.15, 0.09, 0.004, 0.08, 0.03       | 0.08          | 1sec        | 10sec      |
+|          | Parity   | 0.03   | 0.02, 0.047, 0.054, 0.058, 0.036, 0.085, 0.029, 0.031, 0.01, 0.053 | 0.05          |             |            |
+|          | BK       | 0.06   | 0.12, 0.03, 0.01, 0.07, 0.05, 0.04, 0.07, 0.02, 0.017, 0.2         | 0.08          |             |            |
+| LiH      | JW       | 0.03   | 0.07, 0.027                                                        |               | 1sec        | 1min50sec  |
+|          | Parity   | 0.03   | 0.01                                                               |               |             | 1min30sec  |
+|          | BK       | 0.04   | 0.15, 0.02                                                         |               |             | 1min40sec  |
+| BeH2     | JW       | 0.06   | 0.02                                                               |               | 7sec        | 6min20sec  |
+|          | Parity   | 0.09   | 0.09                                                               |               |             | 5min40sec  |
+|          | BK       | 0.06   | 0.12                                                               |               |             | 6min       |
+| H2O      | JW       | 0.12   | 0.12                                                               |               | 15sec       | 6min45sec  |
+|          | Parity   | 0.22   | 0.16, 0.056                                                        |               |             | 6min10sec  |
+|          | BK       | 0.20   | 0.028                                                              |               |             | 6min10sec  |
+| NH3      | JW       | 0.18   | 0.11, 0.076, 0.0507,                                               |               | 5min30      | 28min      |
+|          | Parity   | 0.21   | 0.079                                                              |               |             | 26min      |
+|          | BK       | 0.12   | 0.06                                                               |               |             | 27min      |
 
 ## How do we generate a measurement basis?
 
